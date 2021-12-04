@@ -1,0 +1,59 @@
+
+
+{% extends "base.html" %}
+{% block title %}Sensor Data{% endblock %}
+{% block content %}
+
+
+
+
+<h1>Globale map</h1>
+<div id="map" style="width: 80%; height: 500px; margin-bottom: 150px;"></div>
+
+
+<script>
+    var map = L.map('map').setView([50.85141841646153, 4.357219311858334], 9);
+
+    L.tileLayer( 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '<a href="https://www.openstreetmap.org/fixthemap">Fix a problem with the map!</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          subdomains: ['a','b','c']
+      }).addTo( map );
+
+
+    {% for data in sensor_data %} 
+
+    {% if data.temp < 10 %}
+
+    L.circle([{{data.lat}}, {{data.long}}], {
+        color: 'yellow',
+        fillColor: 'blue',
+        fillOpacity: 0.5,
+        radius: 2000
+    }).addTo(map).bindPopup("Het is op {{data.time}} {{data.temp}}°C in {{data.location}}");;
+    
+    // L.marker([{{data.lat}}, {{data.long}}]).addTo(map)
+    //     .bindPopup('Het is op {{data.time}} {{data.temp}} graden °C in {{data.location}}')
+    //     .openPopup();
+
+    {% elif data.temp < 25 %}
+    L.circle([{{data.lat}}, {{data.long}}], {
+        color: 'yellow',
+        fillColor: 'orange',
+        fillOpacity: 0.5,
+        radius: 2000
+    }).addTo(map).bindPopup("Het is op {{data.time}} {{data.temp}}°C in {{data.location}}");;
+
+    {% else %}
+    L.circle([{{data.lat}}, {{data.long}}], {
+        color: 'yellow',
+        fillColor: 'red',
+        fillOpacity: 0.5,
+        radius: 2000
+    }).addTo(map).bindPopup("Het is op {{data.time}} {{data.temp}}°C in {{data.location}}");;
+
+    {% endif %}
+    {% endfor %}
+
+</script>
+
+{% endblock %}

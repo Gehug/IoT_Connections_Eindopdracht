@@ -1,0 +1,5 @@
+flask==2.0.1
+geopy==1.3.2
+datetime
+decimal
+MySQLdb

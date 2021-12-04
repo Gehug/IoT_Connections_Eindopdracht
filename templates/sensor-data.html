@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Sensor Data{% endblock %}
+{% block content %}
+
+
+
+{% for data in sensor_data %} 
+
+  {% if data.temp < 10 %} <!-- Als tempratuur lager is dan 10 graden zal de background blauw worden -->
+  <div style="margin-bottom: 40px;" class="card text-center bg-primary"> 
+    <div class="card-header">
+      Sensor data
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Temp: {{data.temp}}</h5>
+      <p class="card-text">Het is op {{data.time}} {{data.temp}} graden °C in {{data.location}}</p>
+      <a href="#" class="btn btn-primary">Map</a>
+    </div>
+    <div class="card-footer text-muted">
+      {{data.interval}} ago
+      <!-- 2 days ago -->
+    </div>
+  </div> 
+
+
+
+
+
+  {% elif data.temp < 25 %}
+
+  <div style="margin-bottom: 40px;" class="card text-center bg-warning"> 
+    <div class="card-header">
+      Sensor data
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Temp: {{data.temp}}</h5>
+      <p class="card-text">Het is op {{data.time}} {{data.temp}}°C in {{data.location}}</p>
+      <a href="#" class="btn btn-primary">Map</a>
+    </div>
+    <div class="card-footer text-muted">
+      {{data.interval}} ago
+      <!-- 2 days ago -->
+    </div>
+  </div>
+
+  {% else %}
+
+  <div style="margin-bottom: 40px;" class="card text-center bg-danger"> 
+    <div class="card-header">
+      Sensor data
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Temp: {{data.temp}}</h5>
+      <p class="card-text">Het is op {{data.time}} {{data.temp}} graden °C in {{data.location}}</p>
+      <a href="#" class="btn btn-primary">Map</a>
+    </div>
+    <div class="card-footer text-muted">
+      {{data.interval}} ago
+      <!-- 2 days ago -->
+    </div>
+  </div>
+
+
+
+    {% endif %}
+
+
+  {% endfor %}
+
+
+
+
+
+{% endblock %}
