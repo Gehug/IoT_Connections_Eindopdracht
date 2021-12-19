@@ -2,7 +2,7 @@
 {% block title %}Sensor Data{% endblock %}
 {% block content %}
 
-
+<meta http-equiv="refresh" content="5;"> 
 
 {% for data in sensor_data %} 
 
@@ -14,7 +14,7 @@
     <div class="card-body">
       <h5 class="card-title">Temp: {{data.temp}}</h5>
       <p class="card-text">Het is op {{data.time}} {{data.temp}} graden °C in {{data.location}}</p>
-      <a href="#" class="btn btn-primary">Map</a>
+      <a href="/map/showone/{{data.id}}" class="btn btn-primary">Map</a>
     </div>
     <div class="card-footer text-muted">
       {{data.interval}} ago
@@ -35,7 +35,7 @@
     <div class="card-body">
       <h5 class="card-title">Temp: {{data.temp}}</h5>
       <p class="card-text">Het is op {{data.time}} {{data.temp}}°C in {{data.location}}</p>
-      <a href="#" class="btn btn-primary">Map</a>
+      <a href="/map/showone/{{data.id}}" class="btn btn-primary">Map</a>
     </div>
     <div class="card-footer text-muted">
       {{data.interval}} ago
@@ -52,11 +52,10 @@
     <div class="card-body">
       <h5 class="card-title">Temp: {{data.temp}}</h5>
       <p class="card-text">Het is op {{data.time}} {{data.temp}} graden °C in {{data.location}}</p>
-      <a href="#" class="btn btn-primary">Map</a>
+      <a href="/map/showone/{{data.id}}" class="btn btn-primary">Map</a>
     </div>
     <div class="card-footer text-muted">
       {{data.interval}} ago
-      <!-- 2 days ago -->
     </div>
   </div>
 

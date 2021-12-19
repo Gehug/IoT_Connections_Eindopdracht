@@ -5,10 +5,29 @@
 {% block content %}
 
 
+<ul class="nav flex-column" style="margin-bottom: 100px;">
+    <li class="nav-item">
+      <a class="nav-link active" href="/map/showall">Show all</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/map/show-last-24h">Show Last 24h Only</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Show a specific DEV_EUI</a>
+        <div class="dropdown-menu">
+          {% for EUI in dev_EUI_list %}
+          <a class="dropdown-item" href="/map/{{EUI}}">{{EUI}}</a>
+          {% endfor %}
+        </div>
+      </li>
+  </ul>
 
 
 <h1>Globale map</h1>
+
+
 <div id="map" style="width: 80%; height: 500px; margin-bottom: 150px;"></div>
+
 
 
 <script>
@@ -25,7 +44,7 @@
     {% if data.temp < 10 %}
 
     L.circle([{{data.lat}}, {{data.long}}], {
-        color: 'yellow',
+        color: 'blue',
         fillColor: 'blue',
         fillOpacity: 0.5,
         radius: 2000
@@ -37,7 +56,7 @@
 
     {% elif data.temp < 25 %}
     L.circle([{{data.lat}}, {{data.long}}], {
-        color: 'yellow',
+        color: 'orange',
         fillColor: 'orange',
         fillOpacity: 0.5,
         radius: 2000
@@ -45,7 +64,7 @@
 
     {% else %}
     L.circle([{{data.lat}}, {{data.long}}], {
-        color: 'yellow',
+        color: 'red',
         fillColor: 'red',
         fillOpacity: 0.5,
         radius: 2000
